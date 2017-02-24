@@ -100,11 +100,17 @@
 		watch:{
 			seller(){
 				this.$nextTick(() => {
-					this._initScorll();
-					this._initPics()
+					this._initScroll();
+					this._initPics();
 				});
 			}
 		},
+		mounted() {
+      this.$nextTick(() => {
+        this._initScroll();
+        this._initPics();
+      });
+    },
 		methods:{
 			toggleFavorite(event){
 				if (!event._constructed) {
@@ -113,7 +119,7 @@
 				this.favorite = !this.favorite;
 				saveToLocal(this.seller.id,'favorite',this.favorite)
 			},
-			_initScorll(){
+			_initScroll(){
 				if(!this.scroll){
 					this.scroll = new BScroll(this.$refs.seller,{
 						click:true
